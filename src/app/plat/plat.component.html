@@ -1,0 +1,7 @@
+<h1>Plats</h1>
+<button (click)="addPlat()">Ajouter un plat</button>
+<ul>
+  <li *ngFor="let p of plats">
+    {{p.libelle}}
+  </li>
+</ul>

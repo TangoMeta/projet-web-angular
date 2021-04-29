@@ -1,0 +1,7 @@
+<h1>Catégories</h1>
+<button (click)="addCategorie()">Ajouter une catégorie</button>
+<ul>
+  <li *ngFor="let c of categories">
+    {{c.libelle}}
+  </li>
+</ul>
