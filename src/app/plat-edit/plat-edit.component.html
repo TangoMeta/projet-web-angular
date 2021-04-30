@@ -1,0 +1,12 @@
+<div>
+  <h1>Modification d'un plat</h1>
+  <input type="text" [(ngModel)]="plat.libelle" placeholder="Nom du plat"><br>
+  <input type="text" [(ngModel)]="plat.ingredients" placeholder="Ingrédients"><br>
+  <ng-select [(ngModel)]="plat.categorie.id">
+    <ng-option *ngFor="let c of categories" [value]="c.id">{{c.libelle}}</ng-option>
+  </ng-select>
+  <input type="text" [(ngModel)]="plat.allergene" placeholder="Allergènes"><br>
+  <input type="text" [(ngModel)]="plat.regime" placeholder="Régime"><br>
+  <input type="text" [(ngModel)]="plat.image" placeholder="URL de l'image"><br>
+  <button (click)="editPlat()">Valider</button>
+</div>

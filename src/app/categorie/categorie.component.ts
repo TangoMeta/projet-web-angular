@@ -29,4 +29,13 @@ export class CategorieComponent implements OnInit {
   addCategorie(): void {
     this.router.navigate(['/categorie-add']);
   }
+
+  deleteCategorie(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
+      this.rest.deleteCategory(id).subscribe();
+      this.ngOnInit();
+    } else {
+      return null;
+    }
+  }
 }

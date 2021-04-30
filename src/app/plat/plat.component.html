@@ -3,5 +3,7 @@
 <ul>
   <li *ngFor="let p of plats">
     {{p.libelle}}
+    <button routerLink="/plat-edit/{{p.id}}">Modifier</button>
+    <button (click)="deletePlat(p.id)">Supprimer</button>
   </li>
 </ul>

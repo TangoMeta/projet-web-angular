@@ -51,14 +51,31 @@ export class RestService {
     );
   }
 
-  updatePlat(id: number, plat: Plat): Observable<any> {
-    return this.http.put<Plat>(endpoint + 'plat/' + id, plat).pipe(
+  updatePlat(plat: Plat): Observable<any> {
+    return this.http.put<Plat>(endpoint + 'plat/' + plat.id, plat).pipe(
       catchError(RestService.handleError)
     );
   }
 
+  getPlat(id: number): Observable<any> {
+    return this.http.get<Plat>(endpoint + 'plat/' + id);
+  }
+
+
   deletePlat(id: number): Observable<any> {
     return this.http.delete<Plat>(endpoint + 'plat/' + id).pipe(
+      catchError(RestService.handleError)
+    );
+  }
+
+  searchPlat(search: string): Observable<any> {
+    return this.http.get<Plat>(endpoint + 'plat/search/' + search).pipe(
+      catchError(RestService.handleError)
+    );
+  }
+
+  filterPlat(filter: string): Observable<any> {
+    return this.http.get<Plat>(endpoint + 'plat/filter/' + filter).pipe(
       catchError(RestService.handleError)
     );
   }
@@ -73,10 +90,14 @@ export class RestService {
     );
   }
 
-  updateCategory(id: number, categorie: Categorie): Observable<any> {
-    return this.http.put<Categorie>(endpoint + 'category/' + id, categorie).pipe(
+  updateCategory(categorie: Categorie): Observable<any> {
+    return this.http.put<Categorie>(endpoint + 'category/' + categorie.id, categorie).pipe(
       catchError(RestService.handleError)
     );
+  }
+
+  getCategory(id: number): Observable<any> {
+    return this.http.get<Categorie>(endpoint + 'category/' + id);
   }
 
   deleteCategory(id: number): Observable<any> {

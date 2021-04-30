@@ -3,5 +3,7 @@
 <ul>
   <li *ngFor="let c of categories">
     {{c.libelle}}
+    <button routerLink="/categorie-edit/{{c.id}}">Modifier</button>
+    <button (click)="deleteCategorie(c.id)">Supprimer</button>
   </li>
 </ul>

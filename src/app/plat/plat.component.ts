@@ -29,4 +29,13 @@ export class PlatComponent implements OnInit {
   addPlat(): void {
     this.router.navigate(['/plat-add']);
   }
+
+  deletePlat(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce plat ?')) {
+      this.rest.deletePlat(id).subscribe();
+      this.ngOnInit();
+    } else {
+      return null;
+    }
+  }
 }
