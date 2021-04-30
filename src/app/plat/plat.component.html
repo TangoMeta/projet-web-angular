@@ -1,9 +1,7 @@
-<h1>Plats</h1>
-<button (click)="addPlat()">Ajouter un plat</button>
-<ul>
-  <li *ngFor="let p of plats">
-    {{p.libelle}}
-    <button routerLink="/plat-edit/{{p.id}}">Modifier</button>
-    <button (click)="deletePlat(p.id)">Supprimer</button>
-  </li>
-</ul>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label formArrayName="filters" *ngFor="let filter of filtersFormArray.controls; let i = index">
+    <input type="checkbox" [formControlName]="i">
+    {{filtersData[i].name}}
+  </label>
+  <button>Valider</button>
+</form>
