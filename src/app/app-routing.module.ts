@@ -6,6 +6,7 @@ import {CategorieComponent} from './categorie/categorie.component';
 import {CategorieAddComponent} from './categorie-add/categorie-add.component';
 import {PlatEditComponent} from './plat-edit/plat-edit.component';
 import {CategorieEditComponent} from './categorie-edit/categorie-edit.component';
+import {FourOhFourComponent} from './four-oh-four/four-oh-four.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,14 @@ const routes: Routes = [
     path: '',
     redirectTo: '/plats',
     pathMatch: 'full'
+  },
+  {
+    path: 'not-found',
+    component: FourOhFourComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'not-found'
   }
 ];
 
