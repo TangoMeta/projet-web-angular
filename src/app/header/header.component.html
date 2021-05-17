@@ -27,7 +27,7 @@
           <ul
             class="navbar-nav mr-auto">
             <li class="nav-item active" *ngFor="let categorie of categories">
-              <a class="nav-link" href="#{{ categorie.libelle }}" *ngIf="categorie.libelle != 'Plats masqués'">
+              <a class="nav-link" href="#{{ categorie.libelle }}" *ngIf="categorie.libelle != 'Plats masqués'"> <!-- TODO: find how to jump to a section -->
                 <h4>{{ categorie.libelle }}</h4>
               </a>
             </li>

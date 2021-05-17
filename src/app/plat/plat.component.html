@@ -1,7 +1,56 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <label formArrayName="filters" *ngFor="let filter of filtersFormArray.controls; let i = index">
-    <input type="checkbox" [formControlName]="i">
-    {{filtersData[i].name}}
-  </label>
-  <button>Valider</button>
-</form>
+<app-header></app-header>
+<div class="container-fluid px-5 border-bottom">
+  <div class="row">
+    <div class="col ">
+      <h3>Filtres</h3>
+    </div>
+  </div>
+  <div class="row pl-2 mt-2">
+    <div class="col-3">
+      <div class="row">
+        <div class="col">
+          <h5>Régimes & allergies</h5>
+        </div>
+      </div>
+      <div class="row pl-1 pt-2">
+        <div class="col">
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <label formArrayName="filters" *ngFor="let filter of filtersFormArray.controls; let i = index">
+              <input type="checkbox" [formControlName]="i">
+              {{filtersData[i].name}}
+            </label>
+            <button>Valider</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid pl-4">
+  <div class="row">
+    <div class="col">
+      <ng-container *ngFor="let categorie of categories">
+        <div id="{{ categorie.libelle }}" class="mb-1 mt-4" *ngIf="categorie.libelle !== 'Plats masqués'">
+          <h1>{{ categorie.libelle }}</h1>
+          <div class="container-fluid">
+            <div class="row row-cols-4">
+              <ng-container *ngFor="let plat of plats">
+                <div class="col my-2" *ngIf="plat.categorie.libelle === categorie.libelle">
+                  <div class="card h-100">
+                    <img src="{{ plat.image }}" class="card-img-top" alt="Photo de {{ plat.libelle }}" width="200" height="200">
+                    <div class="card-body">
+                      <h3 class="card-title">{{ plat.libelle }}</h3>
+                      <p class="card-text">{{ plat.ingredients }}</p>
+                      <p class="card-text">Convient au régime : {{ plat.regime }}</p>
+                      <p class="card-text">Allergènes : {{ plat.allergene }}</p>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -14,6 +14,7 @@ import { PlatEditComponent } from './plat-edit/plat-edit.component';
 import { CategorieEditComponent } from './categorie-edit/categorie-edit.component';
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { HeaderComponent } from './header/header.component';
+import {DataService} from './data.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

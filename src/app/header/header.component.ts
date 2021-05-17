@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {Categorie, RestService} from '../rest.service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Categorie, Plat, RestService} from '../rest.service';
 import {NgForm} from '@angular/forms';
+import {PlatComponent} from '../plat/plat.component';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +11,22 @@ import {NgForm} from '@angular/forms';
 })
 export class HeaderComponent implements OnInit {
 
-  categories: Categorie[] = [];
+  @ViewChild(PlatComponent) platComponent;
 
-  constructor(public rest: RestService) { }
+  categories: Categorie[] = [];
+  plats: Plat[] = [];
+
+  constructor(public rest: RestService, private data: DataService) { }
 
   ngOnInit(): void {
     this.getCategories();
+    this.data.currentPlats.subscribe(plats => this.plats = plats);
   }
 
   onSubmit(form: NgForm): void {
     this.rest.searchPlat(form.value.search).subscribe(
       (resp) => {
-        console.log(resp);
-        // TODO: enregistrer les plats retournés au bon endroit pour l'affichage
+        this.data.searchPlats(resp);
       }
     );
   }
@@ -29,7 +34,6 @@ export class HeaderComponent implements OnInit {
   getCategories(): void {
     this.rest.getCategories().subscribe(
       (resp) => {
-        console.log(resp);
         this.categories = resp;
       }
     );

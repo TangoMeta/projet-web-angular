@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { RestService, Plat } from '../rest.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {RestService, Plat, Categorie} from '../rest.service';
 import { Router } from '@angular/router';
 import {FormBuilder,
   FormGroup,
   FormArray,
   FormControl} from '@angular/forms';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-plat',
@@ -14,6 +15,8 @@ import {FormBuilder,
 export class PlatComponent implements OnInit {
 
   plats: Plat[] = [];
+
+  categories: Categorie[] = [];
 
   form: FormGroup;
   filtersData = [
@@ -38,11 +41,17 @@ export class PlatComponent implements OnInit {
     return this.form.controls.filters as FormArray;
   }
 
-  constructor(public rest: RestService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(public rest: RestService, private data: DataService, private router: Router, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       filters: new FormArray([])
     });
     this.addCheckboxes();
+  }
+
+  ngOnInit(): void {
+    this.data.currentPlats.subscribe(plats => this.plats = plats);
+    this.getPlats();
+    this.getCategories();
   }
 
   private addCheckboxes(): void {
@@ -70,15 +79,19 @@ export class PlatComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {
-    this.getPlats();
-  }
-
   getPlats(): void {
     this.rest.getPlats().subscribe(
       (resp) => {
         console.log(resp);
         this.plats = resp;
+      }
+    );
+  }
+
+  getCategories(): void {
+    this.rest.getCategories().subscribe(
+      (resp) => {
+        this.categories = resp;
       }
     );
   }
