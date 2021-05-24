@@ -116,67 +116,67 @@
           </div>
         </div>
       </ng-container>
-
-      <!--
-      <div id="{{ categorieTemp.libelle }}" class="mb-1 mt-4" *ngIf="isAdmin">
-        <div class="row">
-          <div class="col-auto">
-            <h1>{{ categorieTemp.libelle }}</h1>
-          </div>
-          <ng-container *ngIf="isAdmin">
-            <div class="col-auto">
-              <a class="btn btn-info" href="" role="button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewbox="0 0 16 16">
-                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
-                </svg>
-              </a>
-            </div>
-          </ng-container>
-        </div>
-        <div class="container-fluid">
-          <div class="row row-cols-4">
-            <ng-container *ngFor="let plat of categorieTemp.plats">
-              <div class="col my-2" *ngIf="plat.categorie.libelle === categorieTemp.libelle">
-                <a href="">
-                  <div class="card h-100">
-                    <img src="{{ plat.image }}" class="card-img-top" alt="Photo de {{ plat.libelle }}" width="200" height="200">
-                    <div class="card-body">
-                      <h3 class="card-title">{{ plat.libelle }}</h3>
-                      <p class="card-text">{{ plat.ingredients }}</p>
-                      <p class="card-text">Convient au régime : {{ plat.regime }}</p>
-                      <p class="card-text">Allergènes : {{ plat.allergene }}</p>
-                    </div>
-                  </div>
-                </a>
-                <ng-template>
-                  <div class="card h-100">
-                    <img src="{{ plat.image }}" class="card-img-top" alt="Photo de {{ plat.libelle }}" width="200" height="200">
-                    <div class="card-body">
-                      <h3 class="card-title">{{ plat.libelle }}</h3>
-                      <p class="card-text">{{ plat.ingredients }}</p>
-                      <p class="card-text">Convient au régime : {{ plat.regime }}</p>
-                      <p class="card-text">Allergènes : {{ plat.allergene }}</p>
-                    </div>
-                  </div>
-                </ng-template>
+      <ng-container *ngIf="isAdmin">
+        <ng-container *ngFor="let categorie of categories">
+          <div class="mb-1 mt-4" *ngIf="categorie.libelle === 'Plats masqués'">
+            <div class="row">
+              <div class="col-auto">
+                <h1>{{ categorie.libelle }}</h1>
               </div>
-            </ng-container>
-            <div class="col my-2">
-              <a href="">
-                <div class="card h-100">
-                  <img src="https://bit.ly/2NAJeKC" class="card-img-top" alt="Photo de plat" width="200" height="200">
-                  <div class="card-body">
-                    <h3 class="card-title">Nouveau plat</h3>
-                    <p class="card-text">Cliquer pour ajouter un nouveau plat</p>
-                  </div>
+              <ng-container *ngIf="isAdmin">
+                <div class="col-auto">
+                  <a class="btn btn-info" href="" role="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle-fill" viewbox="0 0 16 16">
+                      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                    </svg>
+                  </a>
                 </div>
-              </a>
+              </ng-container>
+            </div>
+            <div class="container-fluid">
+              <div class="row row-cols-4">
+                <ng-container *ngFor="let plat of categorie.plats">
+                  <div class="col my-2">
+                    <a href="">
+                      <div class="card h-100">
+                        <img src="{{ plat.image }}" class="card-img-top" alt="Photo de {{ plat.libelle }}" width="200" height="200">
+                        <div class="card-body">
+                          <h3 class="card-title">{{ plat.libelle }}</h3>
+                          <p class="card-text">{{ plat.ingredients }}</p>
+                          <p class="card-text">Convient au régime : {{ plat.regime }}</p>
+                          <p class="card-text">Allergènes : {{ plat.allergene }}</p>
+                        </div>
+                      </div>
+                    </a>
+                    <ng-template>
+                      <div class="card h-100">
+                        <img src="{{ plat.image }}" class="card-img-top" alt="Photo de {{ plat.libelle }}" width="200" height="200">
+                        <div class="card-body">
+                          <h3 class="card-title">{{ plat.libelle }}</h3>
+                          <p class="card-text">{{ plat.ingredients }}</p>
+                          <p class="card-text">Convient au régime : {{ plat.regime }}</p>
+                          <p class="card-text">Allergènes : {{ plat.allergene }}</p>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </div>
+                </ng-container>
+                <div class="col my-2">
+                  <a href="">
+                    <div class="card h-100">
+                      <img src="https://bit.ly/2NAJeKC" class="card-img-top" alt="Photo de plat" width="200" height="200">
+                      <div class="card-body">
+                        <h3 class="card-title">Nouveau plat</h3>
+                        <p class="card-text">Cliquer pour ajouter un nouveau plat</p>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      -->
-
+        </ng-container>
+      </ng-container>
     </div>
   </div>
 </div>
