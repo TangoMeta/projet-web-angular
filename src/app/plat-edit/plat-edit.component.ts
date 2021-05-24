@@ -34,7 +34,7 @@ export class PlatEditComponent implements OnInit {
     console.log(this.plat);
     this.rest.updatePlat(this.plat).subscribe(
       (result) => {
-        this.router.navigate(['/plats']);
+        this.router.navigate(['/plats-admin']);
       },
       (err) => {
         console.log(err);

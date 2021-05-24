@@ -37,7 +37,7 @@ export class PlatAddComponent implements OnInit {
     console.log(this.plat);
     this.rest.addPlat(this.plat).subscribe(
       (result) => {
-        this.router.navigate(['/plats']);
+        this.router.navigate(['/plats-admin']);
       }
     );
   }

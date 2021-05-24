@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {Categorie, RestService} from '../rest.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {Categorie, RestService, UpdatableCategorie} from '../rest.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -11,21 +11,27 @@ export class CategorieEditComponent implements OnInit {
 
   categorie: Categorie;
 
+  updatableCategorie: UpdatableCategorie;
+
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.updatableCategorie = {id: null, libelle: null};
     this.rest.getCategory(this.route.snapshot.params.id).subscribe(
       (data) => {
-        console.log(data);
         this.categorie = data;
       }
     );
   }
 
   editCategorie(): void {
-    this.rest.updateCategory(this.categorie).subscribe(
+    this.updatableCategorie.id = this.categorie.id;
+    this.updatableCategorie.libelle = this.categorie.libelle;
+    console.log(this.updatableCategorie);
+    this.rest.updateCategory(this.updatableCategorie).subscribe(
       (result) => {
-        this.router.navigate(['/categories']);
+        console.log(result);
+        this.router.navigate(['/plats-admin']);
       }
     );
   }

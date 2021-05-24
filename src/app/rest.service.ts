@@ -22,6 +22,11 @@ export interface Categorie {
   plats: Array<Plat>;
 }
 
+export interface UpdatableCategorie {
+  id: number;
+  libelle: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,6 +57,7 @@ export class RestService {
   }
 
   updatePlat(plat: Plat): Observable<any> {
+    console.log(plat);
     return this.http.put<Plat>(endpoint + 'plat/' + plat.id, plat).pipe(
       catchError(RestService.handleError)
     );
@@ -90,14 +96,15 @@ export class RestService {
     );
   }
 
-  updateCategory(categorie: Categorie): Observable<any> {
-    return this.http.put<Categorie>(endpoint + 'category/' + categorie.id, categorie).pipe(
+  updateCategory(categorie: UpdatableCategorie): Observable<any> {
+    console.log(categorie);
+    return this.http.put<UpdatableCategorie>(endpoint + 'category/' + categorie.id, categorie).pipe(
       catchError(RestService.handleError)
     );
   }
 
   getCategory(id: number): Observable<any> {
-    return this.http.get<Categorie>(endpoint + 'category/' + id);
+    return this.http.get<UpdatableCategorie>(endpoint + 'category/' + id);
   }
 
   deleteCategory(id: number): Observable<any> {

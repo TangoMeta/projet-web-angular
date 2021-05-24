@@ -1,12 +1,35 @@
-<div>
-  <h1>Ajout d'un plat</h1>
-  <input type="text" [(ngModel)]="plat.libelle" placeholder="Nom du plat"><br>
-  <input type="text" [(ngModel)]="plat.ingredients" placeholder="Ingrédients"><br>
-  <ng-select [(ngModel)]="plat.categorie.id">
-    <ng-option *ngFor="let c of categories" [value]="c.id">{{c.libelle}}</ng-option>
-  </ng-select>
-  <input type="text" [(ngModel)]="plat.allergene" placeholder="Allergènes"><br>
-  <input type="text" [(ngModel)]="plat.regime" placeholder="Régime"><br>
-  <input type="text" [(ngModel)]="plat.image" placeholder="URL de l'image"><br>
-  <button (click)="addPlat()">Valider</button>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>
+    Ajout d'un plat
+  </title>
+  <link rel="stylesheet" href="https://bootswatch.com/4/simplex/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row my-5">
+    <div class="col text-center">
+      <h1>Ajout d'un plat</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <input class="w-100" type="text" [(ngModel)]="plat.libelle" placeholder="Nom du plat"><br>
+      <input class="w-100" type="text" [(ngModel)]="plat.ingredients" placeholder="Ingrédients"><br>
+      <ng-select [(ngModel)]="plat.categorie.id">
+        <ng-option *ngFor="let c of categories" [value]="c.id">{{c.libelle}}</ng-option>
+      </ng-select>
+      <input class="w-100" type="text" [(ngModel)]="plat.allergene" placeholder="Allergènes"><br>
+      <input class="w-100" type="text" [(ngModel)]="plat.regime" placeholder="Régime"><br>
+      <input class="w-100" type="text" [(ngModel)]="plat.image" placeholder="URL de l'image"><br>
+    </div>
+  </div>
+  <div class="row mt-2 mb-5">
+    <div class="col">
+      <button (click)="addPlat()" class="btn btn-success">Valider</button>
+    </div>
+  </div>
 </div>
+</body>
+</html>
