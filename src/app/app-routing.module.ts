@@ -7,6 +7,7 @@ import {CategorieAddComponent} from './categorie-add/categorie-add.component';
 import {PlatEditComponent} from './plat-edit/plat-edit.component';
 import {CategorieEditComponent} from './categorie-edit/categorie-edit.component';
 import {FourOhFourComponent} from './four-oh-four/four-oh-four.component';
+import {PlatAdminComponent} from './plat-admin/plat-admin.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'plat-add',
     component: PlatAddComponent
+  },
+  {
+    path: 'plats-admin',
+    component: PlatAdminComponent
   },
   {
     path: 'plat-edit/:id',

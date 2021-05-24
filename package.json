@@ -21,6 +21,7 @@
     "@angular/router": "~11.2.11",
     "@ng-select/ng-select": "^6.1.0",
     "@popperjs/core": "^2.9.2",
+    "@types/lodash": "^4.14.169",
     "any-to-any": "^4.0.0",
     "bootstrap": "^3.3.7",
     "hex-to-binary": "^1.0.1",

@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   onSubmit(form: NgForm): void {
     this.rest.searchPlat(form.value.search).subscribe(
       (resp) => {
+        console.log(resp);
         this.data.searchPlats(resp);
       }
     );

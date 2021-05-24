@@ -22,7 +22,7 @@ export class CategorieAddComponent implements OnInit {
     console.log(this.categorie);
     this.rest.addCategory(this.categorie).subscribe(
       (result) => {
-        this.router.navigate(['/categories']);
+        this.router.navigate(['/plats-admin']);
       }
     );
   }

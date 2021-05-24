@@ -15,6 +15,7 @@ import { CategorieEditComponent } from './categorie-edit/categorie-edit.componen
 import { FourOhFourComponent } from './four-oh-four/four-oh-four.component';
 import { HeaderComponent } from './header/header.component';
 import {DataService} from './data.service';
+import { PlatAdminComponent } from './plat-admin/plat-admin.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {DataService} from './data.service';
     PlatEditComponent,
     CategorieEditComponent,
     FourOhFourComponent,
-    HeaderComponent
+    HeaderComponent,
+    PlatAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./plat.component.scss']
 })
 export class PlatComponent implements OnInit {
+  @Input() isAdmin = false;
 
   plats: Plat[] = [];
 
@@ -73,7 +74,6 @@ export class PlatComponent implements OnInit {
 
     this.rest.filterPlat(binary).subscribe(
       (resp) => {
-        console.log(resp);
         this.plats = resp;
       }
     );
@@ -82,7 +82,6 @@ export class PlatComponent implements OnInit {
   getPlats(): void {
     this.rest.getPlats().subscribe(
       (resp) => {
-        console.log(resp);
         this.plats = resp;
       }
     );
@@ -91,9 +90,23 @@ export class PlatComponent implements OnInit {
   getCategories(): void {
     this.rest.getCategories().subscribe(
       (resp) => {
+        console.log(resp);
         this.categories = resp;
       }
     );
+  }
+
+  addCategorie(): void {
+    this.router.navigate(['/categorie-add']);
+  }
+
+  deleteCategorie(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
+      this.rest.deleteCategory(id).subscribe();
+      this.ngOnInit();
+    } else {
+      return null;
+    }
   }
 
   addPlat(): void {
