@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./categorie-add.component.scss']
 })
 export class CategorieAddComponent implements OnInit {
-
+  // Déclaration de categorie en @Input pour permettre le data-binding
   @Input() categorie = {
     libelle: ''
   };
@@ -18,10 +18,11 @@ export class CategorieAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Fonction d'ajout d'une catégorie
   addCategorie(): void {
-    console.log(this.categorie);
     this.rest.addCategory(this.categorie).subscribe(
       (result) => {
+        console.log(result);
         this.router.navigate(['/plats-admin']);
       }
     );

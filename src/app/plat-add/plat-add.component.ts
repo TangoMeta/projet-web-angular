@@ -25,8 +25,8 @@ export class PlatAddComponent implements OnInit {
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.rest.getCategories().subscribe(
-      (resp) => {
+    this.rest.getCategories().subscribe(  // Récupération des catégories afin de les afficher
+      (resp) => {                    // dans le champ de sélection de la catégorie du plat
         console.log(resp);
         this.categories = resp;
       }
@@ -35,9 +35,10 @@ export class PlatAddComponent implements OnInit {
 
   addPlat(): void {
     console.log(this.plat);
-    this.rest.addPlat(this.plat).subscribe(
+    this.rest.addPlat(this.plat).subscribe(  // Appel de l'API
       (result) => {
-        this.router.navigate(['/plats-admin']);
+        console.log(result);
+        this.router.navigate(['/plats-admin']); // Retour sur la page d'édition du menu
       }
     );
   }

@@ -15,15 +15,15 @@ export class PlatEditComponent implements OnInit {
 
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  // Récupération du plat à modifier
     this.rest.getPlat(this.route.snapshot.params.id).subscribe(
       (data) => {
         console.log(data);
         this.plat = data;
       }
     );
-    this.rest.getCategories().subscribe(
-      (resp) => {
+    this.rest.getCategories().subscribe(  // Récupération des catégories afin de les afficher
+      (resp) => {                    // dans le champ de sélection de la catégorie du plat
         console.log(resp);
         this.categories = resp;
       }
@@ -31,10 +31,10 @@ export class PlatEditComponent implements OnInit {
   }
 
   editPlat(): void {
-    console.log(this.plat);
-    this.rest.updatePlat(this.plat).subscribe(
+    this.rest.updatePlat(this.plat).subscribe(  // Appel de l'API
       (result) => {
-        this.router.navigate(['/plats-admin']);
+        console.log(result);
+        this.router.navigate(['/plats-admin']); // Retour sur la page d'édition du menu
       },
       (err) => {
         console.log(err);

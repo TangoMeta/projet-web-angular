@@ -11,15 +11,15 @@ export class CategorieEditComponent implements OnInit {
 
   categorie: Categorie;
 
-  updatableCategorie: UpdatableCategorie;
-
+  updatableCategorie: UpdatableCategorie; /* Type identique à Categorie, sans l'attribut "plats"
+                                             qui aurait créé une référence circulaire */
   constructor(public rest: RestService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.updatableCategorie = {id: null, libelle: null};
     this.rest.getCategory(this.route.snapshot.params.id).subscribe(
       (data) => {
-        this.categorie = data;
+        this.categorie = data;  // Récupération de la catégorie à modifier, à l'initialisation de la page
       }
     );
   }
@@ -27,8 +27,7 @@ export class CategorieEditComponent implements OnInit {
   editCategorie(): void {
     this.updatableCategorie.id = this.categorie.id;
     this.updatableCategorie.libelle = this.categorie.libelle;
-    console.log(this.updatableCategorie);
-    this.rest.updateCategory(this.updatableCategorie).subscribe(
+    this.rest.updateCategory(this.updatableCategorie).subscribe(  // Appel de la fonction de l'API de mise à jour de la catégorie
       (result) => {
         console.log(result);
         this.router.navigate(['/plats-admin']);

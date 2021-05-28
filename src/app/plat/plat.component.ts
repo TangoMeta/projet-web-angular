@@ -13,7 +13,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./plat.component.scss']
 })
 export class PlatComponent implements OnInit {
-  @Input() isAdmin = false;
+  @Input() isAdmin = false; // Permet d'implémenter un seul composant pour deux pages très similaires
 
   plats: Plat[] = [];
 
@@ -51,15 +51,16 @@ export class PlatComponent implements OnInit {
 
   ngOnInit(): void {
     this.data.currentPlats.subscribe(plats => this.plats = plats);
-    this.getPlats();
-    this.getCategories();
+    this.getPlats(); // Récupère les plats existants dans currentPlats du DataService
+    this.getCategories(); // Récupère les catégories existantes
   }
 
   private addCheckboxes(): void {
-    this.filtersData.forEach(() => this.filtersFormArray.push(new FormControl(false)));
+    this.filtersData.forEach(() => this.filtersFormArray.push(new FormControl(false))); // Créé une checkbox pour chaque filtre
   }
 
-  submit(): void {
+  submit(): void {  // Selon l'état coché ou non de chaque checkbox, la variable binary est affectée. Après ce traitement,
+                    // ce message binaire est envoyé à l'API pour appliquer les filtres
     const selectedFiltersIds = this.form.value.filters
       .map((checked, i) => !!checked )
       .filter(v => v !== null);
@@ -79,7 +80,7 @@ export class PlatComponent implements OnInit {
     );
   }
 
-  getPlats(): void {
+  getPlats(): void {  // Récupération des plats existants
     this.rest.getPlats().subscribe(
       (resp) => {
         this.plats = resp;
@@ -87,7 +88,7 @@ export class PlatComponent implements OnInit {
     );
   }
 
-  getCategories(): void {
+  getCategories(): void {   // Récupération des catégories
     this.rest.getCategories().subscribe(
       (resp) => {
         console.log(resp);
@@ -96,27 +97,27 @@ export class PlatComponent implements OnInit {
     );
   }
 
-  addCategorie(): void {
+  addCategorie(): void {  // Accès à la page d'ajout d'une catégorie
     this.router.navigate(['/categorie-add']);
   }
 
-  deleteCategorie(id: number): void {
+  deleteCategorie(id: number): void {   // Suppression de la catégorie après validation de l'utilisateur
     if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
-      this.rest.deleteCategory(id).subscribe();
-      this.ngOnInit();
+      this.rest.deleteCategory(id).subscribe(); // Appel de l'API...
+      this.ngOnInit();                          // ...puis actualisation des catégorie affichées
     } else {
       return null;
     }
   }
 
-  addPlat(): void {
+  addPlat(): void {  // Accès à la page d'ajout d'un plat
     this.router.navigate(['/plat-add']);
   }
 
-  deletePlat(id: number): void {
+  deletePlat(id: number): void {  // Suppression du plat après validation de l'utilisateur
     if (confirm('Êtes-vous sûr de vouloir supprimer ce plat ?')) {
-      this.rest.deletePlat(id).subscribe();
-      this.ngOnInit();
+      this.rest.deletePlat(id).subscribe(); // Appel de l'API...
+      this.ngOnInit();                      // ... puis actualisation des plats affichés
     } else {
       return null;
     }
